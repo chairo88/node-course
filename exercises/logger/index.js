@@ -1,12 +1,19 @@
-const http = require("http"),
-  file = `${__dirname}/requests.log`;
+const http = require("http");
+const fs = require("fs");
+const file = `${__dirname}/requests.log`;
 
 function transformDataObjectToJson(data) {
   return `${JSON.stringify(data, null, 2)}\n`;
 }
 
 function logRequest(data) {
-  // Write your code here
+  fs.appendFile(file, transformDataObjectToJson(data), (err) => {
+    if (err) {
+      throw err;
+    } else {  
+      console.log("Se grabo la informacion");
+    }
+  });
 }
 
 http.createServer((req, res) => {
@@ -18,6 +25,8 @@ http.createServer((req, res) => {
   };
 
   console.log(`Request received for ${req.url}`);
+  logRequest(data);
   res.writeHead(200, {"Content-Type": "application/json"});
   res.end(transformDataObjectToJson(data));
+  console.log("LLego al final");
 }).listen(8000);
