@@ -1,6 +1,6 @@
-const http = require("http");
-const fs = require("fs");
-const file = `${__dirname}/requests.log`;
+const http = require("http"),
+  fs = require("fs"),
+  file = `${__dirname}/requests.log`;
 
 function transformDataObjectToJson(data) {
   return `${JSON.stringify(data, null, 2)}\n`;
