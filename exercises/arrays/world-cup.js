@@ -196,6 +196,7 @@ function simulate() {
 
   for (let box = 1; box <= 4; box++) {
     // completar
+    teams.filter(team => team.)
   }
 
   console.log("Resultados del sorteo:");
@@ -205,5 +206,5 @@ function simulate() {
     console.log(teamNames.join(", "));
   });
 }
-
-simulate();
+console.log(shuffle(teams));
+//simulate();

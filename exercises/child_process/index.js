@@ -8,8 +8,9 @@ server.on("request", (req, res) => {
   if (req.url === "/compute") {
     console.log("Entró a /compute y forkeo..");
     const sp1 = fork("compute.js");
-    sp1.send((req, res) => {
-
+    sp1.send("start");
+    sp1.on("message", (suma) => {
+      res.end(`la suma es ${suma}`);
     });
   } else {
     console.log("Entró a otro route!");

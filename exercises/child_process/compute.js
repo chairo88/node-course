@@ -6,8 +6,9 @@ function longComputation() {
   return sum;
 }
 
-process.on("message", (req, res) => {
+process.on("message", () => {
   const suma = longComputation();
   console.log("realizo la suma! ", suma);
-  res.end(suma);
+  process.send(suma);
+  process.exit();
 });
